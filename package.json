@@ -1,10 +1,10 @@
 {
   "name": "books-api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,10 +12,16 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "express-react-views": "^0.11.0",
-    "method-override": "^3.0.0",
-    "mongoose": "^6.5.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
-  }
+    "mongoose": "^6.5.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Torinox89/books-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Torinox89/books-api/issues"
+  },
+  "homepage": "https://github.com/Torinox89/books-api#readme",
+  "description": ""
 }

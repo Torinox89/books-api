@@ -1,41 +1,33 @@
 //DEPENDENCIES
 const express = require('express')
-const methodOverride = require('method-override')
 const mongoose = require('mongoose')
 
 // CONFIGURATION
 require('dotenv').config()
 const PORT = process.env.PORT
 const app = express()
-mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}, 
-    () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true},  () => { 
+     console.log('connected to mongo: ',
+     process.env.MONGO_URI) }
     )
 
 // MIDDLEWARE, express Settings
-app.set('views', __dirname + '/views')
-app.set('view engine', 'jsx')
-app.engine('jsx', require('express-react-views').createEngine())
-app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}))
-app.use(methodOverride('_method'))
 
+// books
+const booksController = require('./controllers/books_controller.js')
+app.use('/books', booksController)
 
-// Controllers & Routes
-app.use('/books_controllers', require('./controllers/books_controllers'))
-
-//ROUTES
+// ROUTES
 app.get('/', (req, res) => {
-    res.send('HOME: Hello world!')
+  res.send('Welcome to the Hello World!')
 })
 
-
-
-
-
-// 404 Page
-app.get('*', (req, res) => {
-    res.send('404')
-  })
+// Books: 
+const booksController = require('./controllers/books_controller.js')
+app.use('/books', booksController)
   
   // LISTEN
   app.listen(PORT, () => {

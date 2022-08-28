@@ -6,15 +6,11 @@ const { Schema } = mongoose
 
 // schema
 const bookSchema = new Schema({
-//data {}
-})
-
-
-// helper methods 
-bookSchema.methods.nameMethod = function(){
-  
-}
-
+    title: { type: String,  required: true},
+    description: String,
+    quantity: Number,
+    imageURL: "/assets/shinobi-initiative.jpeg"
+  })
   
 // model and export 
 const Book = mongoose.model('Book', bookSchema)

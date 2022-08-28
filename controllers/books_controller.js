@@ -1,45 +1,24 @@
-const router = require('express').Router()
-const db = require('../models')
-const Books = require('../models/book.js')
+const express = require('express')
+const books = express.Router()
+const Book = require('../models/book.js')
 
-//INDEX ROUTE
-router.get('/', (req, res) => {
-  res.send('GET /books stub')
+// Index
+books.get('/:title', (req, res) => {
+  Book.findOne({ title: req.params.title .toLowerCase() })
+      .then(foundBook => {
+          res.json(foundBook)
+      })
 })
 
-//POST
-router.post('/', (req, res) => {
-  res.send('POST /books stub')
+// Show
+books.get('/', (req, res) => {
+  Books.find()
+      .then(foundBooks => {
+          res.json(foundBooks)
+      })
 })
 
-//NEW
-router.get('/new', (req, res) => {
-  res.render('books/new')
-})
-
-//SHOW PAGE AND LINKS
-router.get('/:id', (req, res) => {
-  res.send('GET /books/:id stub')
-})
-
-//PUT
-router.put('/:id', (req, res) => {
-  res.send('PUT /books/:id stub')
-})
-
-//DELETE
-router.delete('/:id', (req, res) => {
-  res.send('DELETE /books/:id stub')
-})
-
-//EDIT
-router.get('/:id/edit', (req, res) => {
-  res.send('GET edit form stub')
-})
-
-
-
-module.exports = router
+module.exports = books
 
 
 

@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
     () => { console.log('connected to mongo: ', process.env.MONGO_URI) }
     )
 
-// MIDDLEWARE
+// MIDDLEWARE, express Settings
 app.set('views', __dirname + '/views')
 app.set('view engine', 'jsx')
 app.engine('jsx', require('express-react-views').createEngine())
@@ -20,9 +20,12 @@ app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
 
 
+// Controllers & Routes
+app.use('/books_controllers', require('./controllers/books_controllers'))
+
 //ROUTES
 app.get('/', (req, res) => {
-    res.send('Hello world!')
+    res.send('HOME: Hello world!')
 })
 
 
